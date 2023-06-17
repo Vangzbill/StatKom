@@ -49,6 +49,7 @@ with open('Sales_Data.csv', 'r', encoding='utf-8') as file:
         ship_date = row[7]
         units_sold = row[8]
         unit_selling_price = row[9]
+        making_cost = row[10]
 
         id_region = region_ids.get(region)
         id_country = country_ids.get(country)
@@ -57,10 +58,10 @@ with open('Sales_Data.csv', 'r', encoding='utf-8') as file:
         id_metode = metode_ids.get(metode)
 
         query = "INSERT INTO FactSales (id_region, id_country, id_type, id_metode, id_priority, " \
-            "order_year, ship_year, unit_sold, unit_price) " \
-            "VALUES (?, ?, ?, ?, ?, YEAR(?), YEAR(?), ?, ?)"
+            "order_year, ship_year, unit_sold, unit_price, making_cost) " \
+            "VALUES (?, ?, ?, ?, ?, YEAR(?), YEAR(?), ?, ?, ?)"
 
         cursor.execute(query, (id_region, id_country, id_type, id_metode,
-                       id_priority, order_date, ship_date, units_sold, unit_selling_price))
+                       id_priority, order_date, ship_date, units_sold, unit_selling_price, making_cost))
 
         cursor.commit()
